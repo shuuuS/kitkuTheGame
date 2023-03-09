@@ -1,5 +1,7 @@
 import pygame, sys
 from characters.poripori import Poripori
+from enemies.melee import Orcc
+from enemies.range import Borc
 
 class Game(object):
     def __init__(self):
@@ -16,6 +18,8 @@ class Game(object):
         self.tps_delta = 0.0
 
         self.player = Poripori(self)
+        self.meleeOrc = Orcc(self)
+        self.bowOrc = Borc(self)
 
         while True:
             # Handle events
@@ -41,6 +45,8 @@ class Game(object):
 
     def draw(self):
         self.player.draw()
+        self.meleeOrc.draw()
+        self.bowOrc.draw()
         
 
 if __name__ == "__main__":

@@ -3,3 +3,7 @@
 
 # Workspace from vscode
 tofikthegame.code-workspace
+
+# __pycache__
+enemies/__pycache__
+characters/__pycache__
