@@ -1,0 +1,5 @@
+# Virtual environment
+.venv
+
+# Workspace from vscode
+tofikthegame.code-workspace
