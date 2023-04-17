@@ -1,27 +1,32 @@
 import pygame, sys
+from pygame.locals import *
+
 from characters.poripori import Poripori
 from enemies.melee import Orcc
 from enemies.range import Borc
 
+from settings.configuration import *
+
+
 class Game(object):
     def __init__(self):
-        # Config
-        self.tps_max = 144.0
-        self.movement_speed = 1
         
-
         # Initialization
         pygame.init()
-        self.screen = pygame.display.set_mode((1280, 720)) # screen size
-
-        self.tps_clock = pygame.time.Clock()
-        self.tps_delta = 0.0
-
+        
+        # Import classes
         self.player = Poripori(self)
         self.meleeOrc = Orcc(self)
         self.bowOrc = Borc(self)
 
+        # Ticking
+        self.fps_clock = pygame.time.Clock()
+        self.const_delta = 0.0
+
+        
+        
         while True:
+
             # Handle events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -30,25 +35,29 @@ class Game(object):
                     sys.exit(0)
 
             # Ticking
-            self.tps_delta += self.tps_clock.tick()/1000.0
-            while self.tps_delta > 1 / self.tps_max:
+            self.FPS_MAX = FPS_MAX
+            self.const_delta += self.fps_clock.tick() / 1000.0
+            while self.const_delta > 1 / self.FPS_MAX:
                 self.tick()
-                self.tps_delta -= 1 / self.tps_max
-            
+                self.const_delta -= 1 / self.FPS_MAX
+                
+
             # Rendering
-            self.screen.fill((0, 0, 0))
+            screen.fill((0, 0, 0))
             self.draw()
+            screen.blit(background, (0, 0))
+
             pygame.display.flip()
 
+            
     def tick(self):
        self.player.tick()
-
+       
     def draw(self):
         self.player.draw()
-        self.meleeOrc.draw()
-        self.bowOrc.draw()
+        # self.meleeOrc.draw()
+        # self.bowOrc.draw()
         
-
 if __name__ == "__main__":
     Game()
 

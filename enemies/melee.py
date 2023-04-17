@@ -1,4 +1,5 @@
 import pygame
+from settings.configuration import *
 
 class Orcc(object):
     def __init__(self, game):
@@ -9,4 +10,4 @@ class Orcc(object):
         pass
 
     def draw(self):
-        pygame.draw.rect(self.game.screen, (0, 150, 120), self.box)
+        pygame.draw.rect(screen, (0, 150, 120), self.box)

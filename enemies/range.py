@@ -1,4 +1,5 @@
 import pygame
+from settings.configuration import *
 
 class Borc(object):
     def __init__(self, game):
@@ -9,4 +10,4 @@ class Borc(object):
         pass
 
     def draw(self):
-        pygame.draw.rect(self.game.screen, (0, 255, 1), self.box)
+        pygame.draw.rect(screen, (0, 255, 1), self.box)
