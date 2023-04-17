@@ -1,67 +1,50 @@
-import pygame, sys
-from pygame.locals import *
+from characters.tofik import Tofik
+from characters.kropcia import Kropcia
 
-from characters.poripori import Poripori
-from enemies.melee import Orcc
-from enemies.range import Borc
+from possibleLoot.petfood import PetFood
+from possibleLoot.drinks import Drinks
 
-from settings.configuration import *
-
-
-class Game(object):
+class Game():
     def __init__(self):
+        self.main_character = Tofik(20, 15)
+        self.final_character = Kropcia(self, self)
+        self.whiskas = PetFood("Whiskas", 3, 7)
+        self.milk = Drinks("Giga milk", 2)
+
+    def HUD(self):
+        self.main_character.showStats()
+
+    def move(self):
+        self.main_character.movement()
+
+    def useItem(self):
+        self.whiskas.effect(self.main_character.hp)
+        print(f"Tofik ate {self.whiskas.name} and got {self.whiskas.value} missing HP. Now has {self.main_character.hp}")
         
-        # Initialization
-        pygame.init()
-        
-        # Import classes
-        self.player = Poripori(self)
-        self.meleeOrc = Orcc(self)
-        self.bowOrc = Borc(self)
 
-        # Ticking
-        self.fps_clock = pygame.time.Clock()
-        self.const_delta = 0.0
-
-        
-        
-        while True:
-
-            # Handle events
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit(0)
-                elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                    sys.exit(0)
-
-            # Ticking
-            self.FPS_MAX = FPS_MAX
-            self.const_delta += self.fps_clock.tick() / 1000.0
-            while self.const_delta > 1 / self.FPS_MAX:
-                self.tick()
-                self.const_delta -= 1 / self.FPS_MAX
-                
-
-            # Rendering
-            screen.fill((0, 0, 0))
-            self.draw()
-            screen.blit(background, (0, 0))
-
-            pygame.display.flip()
-
-            
-    def tick(self):
-       self.player.tick()
-       
-    def draw(self):
-        self.player.draw()
-        # self.meleeOrc.draw()
-        # self.bowOrc.draw()
-        
+    
 if __name__ == "__main__":
     Game()
 
+while True:
+        Game().HUD()
+        action = input("What do you want do? (move, meow, use item)\n")
+        if action == "move":
+            steps = Game().move()
+        if action == "meow":
+            print("Meow Meow! o.o")
+        if action == "use item":
+            Game().useItem()
+        
 
+
+
+
+        
+        
+
+
+    
 
 
 

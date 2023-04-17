@@ -1,14 +1,7 @@
-# Virtual environment
+# Virtual Environment
 .venv
 
-# Workspace from vscode
-tofikthegame.code-workspace
-
 # __pycache__
-enemies/__pycache__
 characters/__pycache__
-.pytest_cache
-
-
-# VSCode file with settings
-.vscode
+mechanics/__pycache__
+possibleLoot/__pycache__
