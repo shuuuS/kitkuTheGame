@@ -10,8 +10,7 @@ class PetFood():
         print(f"It's {self.name} and need {self.requiredSpace} spaces")
 
     def effect(self, target):
-        target = Tofik(self, self)
-        target.hp += self.value
+        target += self.value
 
     
         

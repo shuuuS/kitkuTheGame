@@ -15,13 +15,29 @@ class Tofik():
                 print("Input must be integer")
                 continue
             else:
-                print(f"Tofik did {numSteps} steps forward")
-                break
-    
-    def abilites(self):
-        pass
+                self.energy -= numSteps
 
-    def backpack(self, inventorySlots, weight):
-        inventorySlots = 20
-        for slot in inventorySlots:
-            pass
+                if self.energy <= 0:
+                    print(f"Tofik must take break, it has {self.energy} energy")
+                else:
+                    print(f"Tofik did {numSteps} steps forward")
+                
+                return numSteps
+        
+
+    
+    def abilites(self, energy, lostEnergyValue):
+        energy -= lostEnergyValue
+        print(f"Tofik tried taunt enemy and lost {lostEnergyValue} energy.")
+
+    def backpack(self, color, backpackSlots, backpackItems):
+        self.color = color
+        self.backpackSlots = backpackSlots
+        self.backpackItems = backpackItems
+        if self.color == "Green":
+            print(f"Your backpack has {self.backpackSlots} slots and items: {self.backpackItems}")
+        if self.color == "Red":
+            print(f"Your backpack has {self.backpackSlots} slots and items: {self.backpackItems}")
+        
+
+        
